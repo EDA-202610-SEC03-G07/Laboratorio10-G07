@@ -2,9 +2,9 @@ from DataStructures.List import array_list as al
 from DataStructures.Map import map_entry as me
 from DataStructures.Map import map_functions as mf
 def new_map(num_elements, load_factor=0.5, prime=109345121):
-    c = num_elements/load_factor
-    capacity = mf.next_prime(c)
-    new_map = {"prime": prime,
+   c = num_elements/load_factor
+   capacity = mf.next_prime(c)
+   new_map = {"prime": prime,
                "capacity": capacity,
                "scale": 1,
                "shift": 0,
@@ -13,7 +13,7 @@ def new_map(num_elements, load_factor=0.5, prime=109345121):
                "limit_factor": load_factor,
                "size": 0
                }
-    return new_map
+   return new_map
 
 
 def table(num_elements):
@@ -34,7 +34,8 @@ def put(my_map, key, value):
    my_map["current_factor"] = size(my_map)/my_map["capacity"]
    if my_map["current_factor"] > my_map["limit_factor"]:
       rehash(my_map)
-    
+   return my_map
+
 def  find_slot(my_map, key, hash_value):
    first_avail = None
    found = False
