@@ -21,7 +21,7 @@ def add_edge(my_graph, key_u, key_v, weight=1):
         raise Exception("El vertice v no existe")
     existing_edge = mp.get(vertex_u["adjacents"], key_v)
     if existing_edge is not None:
-        raise Exception("El arco ya existe")
+        return my_graph
     my_graph["num_edges"] += 1
     v.add_adjacent(vertex_u, key_v, weight)
     return my_graph

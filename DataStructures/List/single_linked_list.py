@@ -228,6 +228,14 @@ def info(node):
     else:
         return node["info"]
 
+def default_function(elemen_1, element_2):
+
+   if elemen_1 > element_2:
+      return 1
+   elif elemen_1 < element_2:
+      return -1
+   return 0
+
 #ALGORITMOS DE ORDENAMIENTO
 def default_sort_criteria(elemento1,elemento2):
     is_sorted = False

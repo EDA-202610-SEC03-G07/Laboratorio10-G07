@@ -28,6 +28,7 @@
 import sys
 import threading
 from App import logic
+from DataStructures.Stack import stack as st
 
 """
 La vista se encarga de la interacción con el usuario.
@@ -41,8 +42,8 @@ operación seleccionada.
 # ___________________________________________________
 
 
-servicefile = 'bus_routes_14000.csv'
-stopsfile = 'bus_stops.csv'
+servicefile = 'singapur_bus_routes/bus_routes_14000.csv'
+stopsfile = 'singapur_bus_routes/bus_stops.csv'
 initialStation = None
 
 # ___________________________________________________
@@ -75,11 +76,33 @@ def option_one(cont):
 
 def option_two(cont):
     # TODO: Imprimir los resultados de la opción 2
-    ...
+    print("\nLas 5 paradas más concurridas son:")
+    top_5 = logic.get_most_concurrent_stops(cont)
+    for i in range(len(top_5)):
+        stop = top_5[i]
+        print(str(i + 1) + ". Parada: " + str(stop[0]) + " - Arcos salientes: " + str(stop[1]))
 
 def option_three(cont):
     # TODO: Imprimir los resultados de la opción 3
-    ...
+    stop1 = input("Ingrese la parada de origen (ej: 00481-10): ")
+    stop2 = input("Ingrese la parada de destino (ej: 00481-10): ")
+    
+    path = logic.get_route_between_stops_dfs(cont, stop1, stop2)
+    
+    if path is None:
+        print("No existe ruta entre " + stop1 + " y " + stop2)
+    else:
+        print("\nRuta encontrada entre " + stop1 + " y " + stop2 + ":")
+        i = 0
+        while not st.is_empty(path):
+            stop = st.pop(path)
+            if stop == stop1:
+                print("Origen: " + str(stop))
+            elif stop == stop2:
+                print("Destino: " + str(stop))
+            else:   
+                print(str(i) + ". " + str(stop))
+            i += 1
 
 def option_four(cont):
     # TODO: Imprimir los resultados de la opción 4
